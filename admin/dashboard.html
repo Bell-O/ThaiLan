@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Lotus Thai Massage & Spa</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-wrapper">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <img src="../images/logo.png" alt="Lotus Thai Massage & Spa" class="sidebar-logo">
+                <h3>Admin Panel</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="#dashboard" data-tab="dashboard-tab"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
+                    <li><a href="#services" data-tab="services-tab"><i class="fas fa-spa"></i> <span>Services</span></a></li>
+                    <li><a href="#gallery" data-tab="gallery-tab"><i class="fas fa-images"></i> <span>Gallery</span></a></li>
+                    <li><a href="#settings" data-tab="settings-tab"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button id="logout-btn" class="btn btn-primary">Logout</button>
+            </div>
+        </aside>
+        
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="header-user">
+                    <span>Welcome, Admin</span>
+                    <img src="../images/admin-avatar.jpg" alt="Admin" class="user-avatar" onerror="this.src='../images/placeholder.jpg'">
+                </div>
+            </header>
+            
+            <div class="admin-content">
+                <!-- Dashboard Tab -->
+                <div id="dashboard-tab" class="tab-content active">
+                    <div class="dashboard-header">
+                        <h2>Dashboard</h2>
+                        <p>Welcome to your admin dashboard. Manage your website content here.</p>
+                    </div>
+                    
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-spa"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Services</h3>
+                                <p class="stat-number" id="services-count">6</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-images"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Gallery Items</h3>
+                                <p class="stat-number" id="gallery-count">6</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-language"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Languages</h3>
+                                <p class="stat-number">3</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Messages</h3>
+                                <p class="stat-number">8</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <!-- Services Tab -->
+                <div id="services-tab" class="tab-content">
+                    <div class="tab-header">
+                        <h2>Manage Services</h2>
+                        <button id="add-service-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Service</button>
+                    </div>
+                    
+                    <div id="services-list" class="admin-list">
+                        <!-- Services will be loaded here -->
+                    </div>
+                    
+                    <div id="service-form-container" class="form-container" style="display: none;">
+                        <h3 id="service-form-title">Add New Service</h3>
+                        <form id="service-form">
+                            <!-- Service form will be loaded dynamically -->
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Gallery Tab -->
+                <div id="gallery-tab" class="tab-content">
+                    <div class="tab-header">
+                        <h2>Manage Gallery</h2>
+                        <button id="add-gallery-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Image</button>
+                    </div>
+                    
+                    <div id="gallery-list" class="admin-list">
+                        <!-- Gallery items will be loaded here -->
+                    </div>
+                    
+                    <div id="gallery-form-container" class="form-container" style="display: none;">
+                        <h3 id="gallery-form-title">Add New Image</h3>
+                        <form id="gallery-form">
+                            <div class="form-group">
+                                <label for="gallery-title">Title</label>
+                                <input type="text" id="gallery-title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="gallery-image">Image URL</label>
+                                <input type="url" id="gallery-image" placeholder="https://example.com/gallery.jpg" required>
+                                <div class="image-url-preview" id="gallery-image-preview">
+                                    <img src="../images/placeholder.jpg" alt="Gallery preview">
+                                </div>
+                            </div>
+                            <input type="hidden" id="gallery-id">
+                            <div class="form-buttons">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="button" id="cancel-gallery-btn" class="btn btn-secondary">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                
+                <!-- Settings Tab -->
+                <div id="settings-tab" class="tab-content">
+                    <div class="tab-header">
+                        <h2>Settings</h2>
+                    </div>
+                    
+                    <form id="settings-form" class="form-container">
+                        <!-- Settings form will be loaded dynamically -->
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
+
